@@ -11,10 +11,13 @@ proto.begin_node = function(node) {
             this.output += '<'+tag+' />';
             return;
         }
-        case 'html': {
-            this.output += '<span class="wafl">Raw HTML section. Edit in Wiki Text mode.</span>';
-            return;
-        }
+    case 'html': {
+	// CBH
+	var inline_html = node.text.replace(/^\.html/,"").replace(/\.html$/,"");
+	this.output += inline_html;
+        // this.output += '<span class="wafl">Raw HTML section. Edit in Wiki Text mode.</span>';
+        return;
+    }
         case 'waflparagraph': case 'waflphrase': case 'im': {
             if (node._wafl.match(/^image:\s*(\S+)(?:\s+size=(\w+))?/)) {
                 var onload = "if (typeof(ss) != 'undefined' && ss.editor) { var recalc = function () { try { ss.editor.DoPositionCalculations() } catch (e) { setTimeout(recalc, 500) } }; recalc() } if (!window.image_dimension_cache) window.image_dimension_cache = {};window.image_dimension_cache['/data/wafl/"+node._label.replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/'/g, "\\'").replace(/\\/g, "\\\\")+"'] = [ this.offsetWidth, this.offsetHeight ]; this.style.width = this.offsetWidth + 'px'; this.style.height = this.offsetHeight + 'px'";
