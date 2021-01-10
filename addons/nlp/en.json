@@ -1,0 +1,13 @@
+{
+
+    "s_fdef_NLPSENTIMENT": "Returns the sentiment result.",
+    "s_fdef_NLPLEVENSHTEIN": "Returns the Levenshtein distance between two strings.",
+
+    "s_farg_nlpsentiment": "locale, text, [option]",
+
+    "s_fclass_html": "NLP",
+
+
+    "function_classlist" : ["nlp"]
+
+}

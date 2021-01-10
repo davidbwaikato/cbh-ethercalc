@@ -7,6 +7,8 @@ ETHERCALC_FILES=\
 	static/jquery.js \
 	static/vex.combined.min.js
 
+ADDON_FILES=$(shell bash addons/addons.sh)
+
 LS_FILES=$(wildcard src/*.ls)
 
 JS_FILES=$(LS_FILES:src/%.ls=%.js)
@@ -38,7 +40,7 @@ manifest ::
 	perl -pi -e 's/# [A-Z].*\n/# @{[`date`]}/m' manifest.appcache
 
 ./node_modules/streamline/bin/_node \
-./node_modules/uglify-js/bin/uglifyjs :
+./node_modules/terser/bin/terser :
 	npm i --dev
 
 static/multi.js :: multi/main.ls multi/styles.styl
@@ -46,13 +48,25 @@ static/multi.js :: multi/main.ls multi/styles.styl
 
 depends: app.js static/ethercalc.js static/start.css static/multi.js
 
+./node_modules/socialcalc/dist/SocialCalc.js :
+	mkdir -p ./node_modules/socialcalc/
+	cp -r ../socialcalc/dist/ ./node_modules/socialcalc/dist/
+
+./addons/addons.js : FORCE
+	echo $(ADDON_FILES)
+	node_modules/.bin/browserify $(ADDON_FILES) > addons/addons.js
+
 static/ethercalc.js: $(ETHERCALC_FILES) \
-     ./node_modules/socialcalc/dist/SocialCalc.js \
-     ./node_modules/uglify-js/bin/uglifyjs
+	 ./node_modules/socialcalc/dist/SocialCalc.js \
+	 ./node_modules/terser/bin/terser \
+	 ./addons/addons.js \
+	 FORCE
 	@-mkdir -p .git
 	@echo '// Auto-generated from "make depends"; ALL CHANGES HERE WILL BE LOST!' > $@
-	node node_modules/uglify-js/bin/uglifyjs node_modules/socialcalc/dist/SocialCalc.js $(ETHERCALC_FILES) $(UGLIFYJS_ARGS) --source-map ethercalc.js.map --source-map-include-sources >> $@
-	mv ethercalc.js.map static
+	node node_modules/terser/bin/terser node_modules/socialcalc/dist/SocialCalc.js addons/addons.js $(ETHERCALC_FILES) $(UGLIFYJS_ARGS) >> $@
+
+.PHONY: FORCE
+FORCE:
 
 COFFEE := $(shell command -v coffee 2> /dev/null)
 .coffee.js:

@@ -1,0 +1,10 @@
+{
+
+    "s_fdef_ISREGEXFORMAT": "Returns \"true\" if the value is a string in regex literal notation. ",
+    "s_fdef_ISVALIDREGEX": "Returns \"true\" if the value is a valid regular expression. ",
+    "s_fdef_REGEX": "Converts a regular expression into literal notation. ",
+
+    "s_farg_regex": "expression, [flags]",
+    "s_farg_occurs": "regex, text"
+
+}

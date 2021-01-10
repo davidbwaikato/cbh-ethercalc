@@ -211,10 +211,12 @@
 }
 
 #SocialCalc-edittools img[id]:hover,
-#SocialCalc-formulafunctions:hover,
+/*#SocialCalc-formulafunctions:hover,
 #SocialCalc-multilineinput:hover,
 #SocialCalc-link:hover,
-#SocialCalc-sum:hover,
+#SocialCalc-sum:hover,*/
+#SocialCalc-formulafunctions:hover,
+#SocialCalc-formulafunctions ~ img:hover,
 #SocialCalc-last:hover,
 #SocialCalc-next:hover {
     -webkit-box-shadow:  0px 0px 10px 1px rgba(102, 175, 233, .4);

@@ -8,6 +8,7 @@
     "url": "https://github.com/audreyt/ethercalc"
   },
   "dependencies": {
+    "browserify": "^17.0.0",
     "cors": "*",
     "csv-parse": "^0.0.6",
     "iconv-lite": "^0.4.13",
@@ -17,7 +18,7 @@
     "nodemailer": "*",
     "optimist": "*",
     "redis": "0.12.x",
-    "socialcalc": "2.x",
+    "terser": "^5.5.1",
     "uuid-pure": "*",
     "xoauth2": "*",
     "zappajs": "0.5.x"
@@ -26,6 +27,13 @@
     "webworker-threads": "^0.7.1"
   },
   "devDependencies": {
+    "@nlpjs/core": "^4.17.0",
+    "@nlpjs/lang-en": "^4.17.0",
+    "@nlpjs/language": "^4.17.0",
+    "@nlpjs/nlp": "^4.17.2",
+    "@nlpjs/request-rn": "^4.17.7",
+    "@nlpjs/sentiment": "^4.17.0",
+    "@nlpjs/similarity": "^4.17.0",
     "css-loader": "^0.9.0",
     "livescript-loader": "^0.1.5",
     "react": "^0.12.1",
