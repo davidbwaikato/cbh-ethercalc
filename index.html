@@ -39,7 +39,14 @@ window.addEventListener("message", function(it){
 <script>
 var readl10nfile = function(data) {
   for (var k in data) {
-        SocialCalc.Constants[k] = data[k];
+        if (Array.isArray(data[k])) {
+            for (var x of data[k]) {
+                if (SocialCalc.Constants[k].indexOf(x) == -1) {
+                    SocialCalc.Constants[k].push(x);
+                }
+            }
+        }
+        else SocialCalc.Constants[k] = data[k];
     }
 }
 $.ajax({url: ("./l10n/" + navigator.language + ".json").replace(/de-\w+/, 'de').replace(/zh-Hant/i, 'zh-TW').replace(/fr-\w+/, 'fr').replace(/en-\w+/, 'en'),
@@ -53,6 +60,27 @@ $.ajax({url: ("./l10n/" + navigator.language + ".json").replace(/de-\w+/, 'de').
           });
         }
   });
+
+$.ajax({url: "./addons/addons.json",
+        async: false,
+        success: function(data) {
+            var addons = data["addons"];
+            for (var addon of addons) {
+                $.ajax({url: ("./addons/" + addon + "/" + navigator.language + ".json").replace(/de-\w+/, 'de').replace(/zh-Hant/i, 'zh-TW').replace(/fr-\w+/, 'fr').replace(/en-\w+/, 'en'),
+                        async: false,
+                        success: function(data) {readl10nfile(data)},
+                        error: function() {
+                            $.ajax({url: "./addons/en.json",
+                                    async: false,
+                                    success: function(data) {readl10nfile(data)},
+                                    error: function() {console.error("Language file for addon '" + addon + "' not found.")}
+                            });
+                        }
+                });
+            }
+        },
+        error: function() {console.error("Addons file not found.")}
+    });
 </script>
 
 <link rel="stylesheet" type="text/css" href="./static/socialcalc.css">

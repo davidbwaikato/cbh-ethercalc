@@ -5,7 +5,7 @@
 
     "s_farg_nlpsentiment": "locale, text, [option]",
 
-    "s_fclass_html": "NLP",
+    "s_fclass_nlp": "NLP",
 
 
     "function_classlist" : ["nlp"]
