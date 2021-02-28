@@ -13,6 +13,7 @@
     "csv-parse": "^0.0.6",
     "iconv-lite": "^0.4.13",
     "j": "^0.4.5",
+    "lda-topic-model": "github:ajmacdonald/lda-topic-model",
     "livescript": "1.5.x",
     "minimatch": "*",
     "nodemailer": "*",
@@ -21,20 +22,19 @@
     "terser": "^5.5.1",
     "uuid-pure": "*",
     "xoauth2": "*",
-    "zappajs": "0.5.x"
-  },
-  "optionalDependencies": {
-    "webworker-threads": "^0.7.1"
+    "zappajs": "0.5.x",
+    "zipjs-browserify": "^1.0.1"
   },
   "devDependencies": {
     "@nlpjs/core": "^4.17.0",
-    "@nlpjs/lang-en": "^4.17.0",
+    "@nlpjs/lang-all": "^4.17.1",
     "@nlpjs/language": "^4.17.0",
     "@nlpjs/nlp": "^4.17.2",
     "@nlpjs/request-rn": "^4.17.7",
     "@nlpjs/sentiment": "^4.17.0",
     "@nlpjs/similarity": "^4.17.0",
     "css-loader": "^0.9.0",
+    "esmify": "^2.1.1",
     "livescript-loader": "^0.1.5",
     "react": "^0.12.1",
     "react-basic-tabs": "^1.0.3",

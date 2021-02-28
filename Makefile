@@ -7,7 +7,8 @@ ETHERCALC_FILES=\
 	static/jquery.js \
 	static/vex.combined.min.js
 
-ADDON_FILES=$(shell bash addons/addons.sh)
+ADDON_FILES=$(shell bash addons/addons.sh client)
+ADDON_NODE_FILES=$(shell bash addons/addons.sh server)
 
 LS_FILES=$(wildcard src/*.ls)
 
@@ -48,13 +49,18 @@ static/multi.js :: multi/main.ls multi/styles.styl
 
 depends: app.js static/ethercalc.js static/start.css static/multi.js
 
-./node_modules/socialcalc/dist/SocialCalc.js :
+./node_modules/socialcalc/dist/SocialCalc.js : FORCE
 	mkdir -p ./node_modules/socialcalc/
-	cp -r ../socialcalc/dist/ ./node_modules/socialcalc/dist/
+	rm -r ./node_modules/socialcalc/dist/
+	cp -r ../socialcalc/dist/ ./node_modules/socialcalc/
 
 ./addons/addons.js : FORCE
-	echo $(ADDON_FILES)
-	node_modules/.bin/browserify $(ADDON_FILES) > addons/addons.js
+	@echo "Addon files"
+	@echo $(ADDON_FILES)
+	@echo "Node addon files"
+	@echo $(ADDON_NODE_FILES)
+	node_modules/.bin/browserify -p esmify $(ADDON_FILES) > addons/addons.js
+	node_modules/.bin/browserify --node -p esmify $(ADDON_NODE_FILES) > addons/addons-node.js
 
 static/ethercalc.js: $(ETHERCALC_FILES) \
 	 ./node_modules/socialcalc/dist/SocialCalc.js \

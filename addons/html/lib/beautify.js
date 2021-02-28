@@ -1,0 +1,1 @@
+//Placeholder to load beautify-html.js as module

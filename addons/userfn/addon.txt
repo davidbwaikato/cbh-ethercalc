@@ -1,0 +1,2 @@
+@includeserver true
+*.js

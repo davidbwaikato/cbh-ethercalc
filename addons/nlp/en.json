@@ -1,12 +1,32 @@
 {
 
-    "s_fdef_NLPSENTIMENT": "Returns the sentiment result.",
+    "s_fdef_JSONGET": "Returns the value in a JSON object or array accessed by the given successive keys if it exists; otherwise returns the default value.",
+    "s_fdef_LDA": "Returns a JSON object with 'scores' of format {\"topicID_1\":{\"documentID_1\":n, ...}, ...} and 'words' of format {\"topicID_1\":\"word1 word2 ...\", ...}, created from the result of Latent Dirichlet Allocation with the input documents.",
+    "s_fdef_NLPGUESSLANGUAGE": "Returns the best guess of the language. The format may be one of 'xx', 'xxx', 'lang', or 'score'. A space-separated list of permitted locales may also be provided.",
+    "s_fdef_NLPISSTOPWORD": "Returns if the string is a stopword.",
     "s_fdef_NLPLEVENSHTEIN": "Returns the Levenshtein distance between two strings.",
+    "s_fdef_NLPNORMALIZE": "Returns the normalized string.",
+    "s_fdef_NLPSENTIMENT": "Returns the sentiment result.",
+    "s_fdef_NLPSTEM": "Returns the string with the words stemmed.",
+    "s_fdef_NLPSTOPWORDS": "Returns the string with the stopwords removed. Takes an optional parameter for additional stopwords.",
+    "s_fdef_NLPTOKENIZE": "Returns the tokens of the string separated by spaces.",
+    "s_fdef_NLPTOKENIZENORM": "Returns the tokens of the string separated by spaces and normalized.",
 
+
+    "s_farg_jsonget": "json, default, keys...",
+    "s_farg_lda": "documents...",
+    "s_farg_nlpguesslanguage": "text, format, [language_list]",
+    "s_farg_nlpisstopword": "locale, text",
+    "s_farg_nlplevenshtein": "text1, text2",
+    "s_farg_nlpnormalize": "locale, text",
     "s_farg_nlpsentiment": "locale, text, [option]",
+    "s_farg_nlpstem": "locale, text",
+    "s_farg_nlpstopwords": "locale, text, [stopwords_list]",
+    "s_farg_nlptokenize": "locale, text",
+    "s_farg_nlptokenizenorm": "locale, text",
 
+    
     "s_fclass_nlp": "NLP",
-
 
     "function_classlist" : ["nlp"]
 

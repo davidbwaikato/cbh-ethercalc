@@ -1,1 +1,1 @@
-{ "addons": ["html", "nlp", "nlp-lib", "regex", "widget"] }
+{ "addons": ["html", "nlp", "regex", "userfn"] }
